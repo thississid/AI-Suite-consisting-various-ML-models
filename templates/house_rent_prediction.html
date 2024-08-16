@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Rent Prediction Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>House Rent Prediction Results</h1>
+    {% for table in tables %}
+        <div>{{ table|safe }}</div>
+    {% endfor %}
+    <a href="/">Back to Homepage</a>
+</body>
+</html>
+
+    <title>House Rent Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>House Rent Prediction</h1>
+        
+        <form action="{{ url_for('house_rent_prediction') }}" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv">
+            <button type="submit">Upload and Predict</button>
+        </form>
+        
+        {% if tables %}
+            <h2>Prediction Results</h2>
+            <div>
+                {{ tables|safe }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
