@@ -5,9 +5,11 @@ from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
 import os
 
+
 app = Flask(__name__)
 
 # Route for the homepage
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -23,12 +25,13 @@ def house_rent_prediction():
     if request.method == 'POST':
         if 'file' not in request.files:
             return redirect(request.url)
-        
         file = request.files['file']
+        
         if file.filename == '':
             return redirect(request.url)
         
-        if file:
+        if file:    
+            
             # Save the uploaded file
             filepath = os.path.join('uploads', file.filename)
             file.save(filepath)
@@ -69,7 +72,7 @@ def house_rent_prediction():
                 'Actual': y_test,
                 'Predicted': predictions
             })
-            
+                    
             # Highlight cells where predictions are close to actual values
             results['Difference'] = abs(results['Actual'] - results['Predicted'])
             results_html = results.style.applymap(lambda x: 'background-color: lightgreen' if x < 500 else '').to_html()
